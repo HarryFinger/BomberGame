@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include<string>
-#include<unordered_map>
+#include <unordered_map>
 
 
 class MenuResourceManager final

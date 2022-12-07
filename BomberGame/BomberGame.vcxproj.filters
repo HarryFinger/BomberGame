@@ -57,8 +57,14 @@
     <ClCompile Include="MenuResourceManager.cpp">
       <Filter>Source Files\MenuPage</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="GameResourceManager.cpp">
+      <Filter>Source Files\GamePage</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GamePage</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannonball.cpp">
+      <Filter>Source Files\GamePage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameResourceManager.h">
+      <Filter>Header Files\GamePage</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\GamePage</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannonball.h">
+      <Filter>Header Files\GamePage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

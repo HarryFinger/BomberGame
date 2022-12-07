@@ -9,6 +9,8 @@ public:
 	{
 		START,
 		EXIT,
+		WIN,
+		DEFEAT,
 
 		NOTHING
 	};
@@ -19,7 +21,7 @@ public:
 	virtual void processInput(const sf::Event& event) = 0;
 	virtual void update(float delta_time) = 0;
 	virtual void render(sf::RenderWindow& window) = 0;
+
 protected:
-	
 	TaskType task_type = TaskType::NOTHING;
 };

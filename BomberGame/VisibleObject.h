@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 
 class VisibleObject : public sf::Drawable
@@ -10,6 +11,9 @@ public:
 	
 	void setPosition(float X, float Y);
 	void CenterOrigin();
+	void setRelativeOrigin(float rate_X = 0.5, float rate_Y = 0.5);
+	void setScale(float X, float Y) { sprite_.setScale(X,Y); }
+	void setRotation(float angle); //param angle in degrees
 	float getX() { return X_; }
 	float getY() { return Y_; }
 

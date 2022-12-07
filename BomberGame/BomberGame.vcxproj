@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;gdi32.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;gdi32.lib;winmm.lib;freetype.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Development\SFML-2.5.1\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -136,7 +136,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cannonball.cpp" />
+    <ClCompile Include="GameResourceManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="VisibleObject.cpp" />
     <ClCompile Include="GamePage.cpp" />
@@ -148,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cannonball.h" />
+    <ClInclude Include="GameResourceManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="VisibleObject.h" />
     <ClInclude Include="GamePage.h" />

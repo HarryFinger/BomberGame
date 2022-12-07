@@ -3,7 +3,6 @@
 
 VisibleObject::VisibleObject(const sf::Texture& texture) : sprite_(texture)
 {
-
 }
 
 void VisibleObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -26,7 +25,19 @@ void VisibleObject::setPosition(float X, float Y)
 void VisibleObject::CenterOrigin()
 {
 	auto result = sprite_.getTextureRect();
-	auto origin_center_y = result.height / 2;
-	auto origin_center_x = result.width / 2;
-	sprite_.setOrigin((float)origin_center_x, (float)origin_center_y);
+	auto origin_center_y = result.height / 2.0f;
+	auto origin_center_x = result.width / 2.0f;
+	sprite_.setOrigin(origin_center_x, origin_center_y);
+}
+
+void VisibleObject::setRelativeOrigin(float rate_X, float rate_Y)
+{
+	float coordinate_X = sprite_.getTextureRect().width * rate_X;
+	float coordinate_Y = sprite_.getTextureRect().height * rate_Y;
+	sprite_.setOrigin(coordinate_X, coordinate_Y);
+}
+
+void VisibleObject::setRotation(float angle)
+{
+	sprite_.setRotation(angle);
 }

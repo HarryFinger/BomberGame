@@ -45,9 +45,27 @@ void MenuPage::processInput(const sf::Event& event)
 
 void MenuPage::update(float delta_time)
 {
-	if (is_left_button_clicked && (WhatTypeOfButton() == Button::Type::EXIT))
-		this->task_type = TaskType::EXIT;
-	
+	if (is_left_button_clicked)
+	{
+		auto button = PressedButton();
+		if (button != nullptr)
+		{
+			switch (button->getButtonType())
+			{
+				case Button::Type::START:
+					this->task_type = TaskType::START;
+					break;
+
+				case Button::Type::EXIT:
+					this->task_type = TaskType::EXIT;
+					break;
+
+				case Button::Type::EMPTY:
+					break;
+			}
+		}
+	}
+		
 	is_left_button_clicked = false;
 }
 
@@ -62,19 +80,15 @@ void MenuPage::render(sf::RenderWindow& window)
 	window.draw(cursor);
 }
 
-//todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! need to check if on button first
-Button::Type MenuPage::WhatTypeOfButton()
+
+Button* MenuPage::PressedButton()
 {
-	for (const auto& button_el : button_list)
+	for (auto& button_el : button_list)
 	{
 		if (button_el.IsContains(cursor.getX(), cursor.getY()))
 		{
-			if (button_el.getButtonType() == Button::Type::EXIT)
-			{
-				return Button::Type::EXIT;
-			}
+			return &button_el;
 		}
 	}
-	return Button::Type::EMPTY;
+	return nullptr;
 }
-

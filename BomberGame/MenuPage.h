@@ -6,7 +6,6 @@
 
 #include <list>
 
-
 class MenuPage final : public Page
 {
 public:
@@ -24,6 +23,6 @@ private:
 	bool is_left_button_clicked = false;
 	
 private:
-	Button::Type WhatTypeOfButton();
+	Button* PressedButton();
 };
 

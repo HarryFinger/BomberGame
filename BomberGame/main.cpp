@@ -5,7 +5,6 @@
 #include "Manager.h"
 #include "Tools.h"
 
-
 #ifdef GAME_DEBUG
 int main()
 #endif
@@ -16,13 +15,12 @@ int WinMain()
 {
     sf::RenderWindow window(sf::VideoMode(tools::getWindowWidth(), tools::getWindowHeight()), "BoomberGame", sf::Style::Titlebar | sf::Style::Close);
     window.setMouseCursorVisible(0);
-    Manager manager;
+
+    Manager manager(&window);
 
     sf::Clock main_clock;
     float prev_time = main_clock.getElapsedTime().asSeconds();
     float time_accumulator = tools::getFPS();
-
-    sf::Cursor cursor;
 
     while (window.isOpen())
     {
@@ -50,7 +48,7 @@ int WinMain()
 
             //render state
             window.clear();
-            manager.render(window);
+            manager.render();
 
             window.display();
             time_accumulator -= tools::getFPS();
