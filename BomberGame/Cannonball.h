@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Cannonball.h"
 #include "VisibleObject.h"
 
 class Cannonball final: public VisibleObject

@@ -138,7 +138,8 @@
   <ItemGroup>
     <ClCompile Include="Cannonball.cpp" />
     <ClCompile Include="GameResourceManager.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="VisibleObject.cpp" />
     <ClCompile Include="GamePage.cpp" />
@@ -152,7 +153,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cannonball.h" />
     <ClInclude Include="GameResourceManager.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Gun.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="VisibleObject.h" />
     <ClInclude Include="GamePage.h" />

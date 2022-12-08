@@ -1,13 +1,14 @@
 #pragma once
 
+#include "Cannonball.h"
+#include "GameResourceManager.h"
+#include "Gun.h"
 #include "Page.h"
 #include "VisibleObject.h"
-#include "GameResourceManager.h"
-#include "Player.h"
+#include "Timer.h"
 
 #include <SFML/Graphics.hpp>
 
-constexpr float LEVEL_TIME = 13.0f;
 
 class GamePage final : public Page
 {
@@ -18,17 +19,22 @@ public:
 	void processInput(const sf::Event& event);
 	void update(float delta_time);
 	void render(sf::RenderWindow& window) override;
+
+private:
+	void CreateCannonball();
+	void CannonballUpdateOrDestroy(float delta_time);
+
 	
 private:
 	GameResourceManager res_manager;
 
-	Player player;
+	Gun gun;
+	Timer timer;
 
+	VisibleObject cursor;
 	VisibleObject background;
-	VisibleObject clock;
-	sf::Text timer;	
 
-	float time = LEVEL_TIME; // time before defeat
+	std::list<Cannonball> cannonball_list;
 
 	sf::CircleShape circle; // debug
 
