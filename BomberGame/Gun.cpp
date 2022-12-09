@@ -1,6 +1,6 @@
 #include "Gun.h"
 #include "Tools.h"
-
+#include <iostream>
 
 Gun::Gun(const sf::Texture& cannon_texture, const sf::Texture& stand_texture):
 	  cannon(cannon_texture)
@@ -17,13 +17,25 @@ Gun::Gun(const sf::Texture& cannon_texture, const sf::Texture& stand_texture):
 void Gun::update(float delta_time)
 {
 	// todo
+	forward_vector = tools::NormalizeVector(sf::Vector2f(aim_X - cannon.getX(), aim_Y - cannon.getY()));
+
+	// sf::Vector2f(0.f, -1.f) is unit vector pointing up
+	float alpha = std::acos(tools::DotProduct(sf::Vector2f(0.0f, -1.0f), forward_vector)) * tools::getRadToDegrees();
+
+	if (aim_X < tools::getWindowWidth() / 2.0f)
+	{
+		alpha *= -1.0f;
+	}
+
 	// converting to new coordinate system
-	float l_X = aim_X - cannon.getX();
+
+	/*float l_X = aim_X - cannon.getX();
 	float l_Y = cannon.getY() - aim_Y;
+	auto angle = std::atan2(l_X, l_Y) * tools::getRadToDegrees();*/
 
-	auto angle = std::atan2(l_X, l_Y) * tools::getRadToDegrees();
 
-	if (angle >= tools::getRightCannonRotLimit())
+
+	/*if (angle >= tools::getRightCannonRotLimit())
 	{
 		angle = tools::getRightCannonRotLimit();
 	}
@@ -31,9 +43,10 @@ void Gun::update(float delta_time)
 	if (angle <= tools::getLeftCannonRotLimit())
 	{
 		angle = tools::getLeftCannonRotLimit();
-	}
+	}*/
+	alpha = tools::Clamp(alpha, -tools::getCanRotLimit(), tools::getCanRotLimit());
 
-	cannon.setRotation(angle);
+	cannon.setRotation(alpha);
 
 	// create cannonball
 	

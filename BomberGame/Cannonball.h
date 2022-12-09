@@ -7,9 +7,15 @@ class Cannonball final: public VisibleObject
 {
 public:
 	Cannonball(const sf::Texture& texture);
-	sf::Vector2f forward_vector;
 	void update(float delta_time);
 	float getLifeTime() { return time_accumulator; }
+
+	void ChangeForwardVector(sf::Vector2f for_vec);
+	float getRadius();
+	sf::Vector2f getPositionVector();
+
 private:
+	sf::Vector2f forward_vector;
+	float speed;
 	float time_accumulator = 0.0f;
 };

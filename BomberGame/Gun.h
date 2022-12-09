@@ -15,16 +15,15 @@ public:
 	void update(float delta_time);
 
 	void updateAimCoordinate(float X, float Y) { aim_X = X; aim_Y = Y; };
-	sf::Vector2f getForwardVercor() { return cannon_forward_vector; }
+	sf::Vector2f getForwardVercor() { return forward_vector; }
 
 private:
 	VisibleObject cannon;
 	VisibleObject stand;
 
+	sf::Vector2f forward_vector;
 
 	float aim_X = 0.0f;
 	float aim_Y = 0.0f;
-
-	sf::Vector2f cannon_forward_vector{ 0.0f, 0.0f };
 };
 
