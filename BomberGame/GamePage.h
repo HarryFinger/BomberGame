@@ -21,7 +21,7 @@ public:
 	void render(sf::RenderWindow& window) override;
 
 private:
-	void CreateCannonball();
+	void CreateCannonball(sf::Vector2f for_vec, float speed);
 	void CannonballUpdateOrDestroy(float delta_time);
 
 	

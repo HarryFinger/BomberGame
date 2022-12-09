@@ -1,6 +1,10 @@
 ﻿#include "GamePage.h"
 #include "Tools.h"
 
+namespace {
+	const float CANNONBALL_SPEED = 100.0f;
+}
+
 GamePage::GamePage()
 	: gun(res_manager.getTexture(GameResourceManager::TypeTexture::CANNON),
 		res_manager.getTexture(GameResourceManager::TypeTexture::STAND))
@@ -55,7 +59,7 @@ void GamePage::update(float delta_time)
 
 	if (is_left_button_clicked)
 	{
-		CreateCannonball();
+		CreateCannonball(gun.getForwardVercor(), CANNONBALL_SPEED);
 	}
 
 	CannonballUpdateOrDestroy(delta_time);
@@ -79,9 +83,9 @@ void GamePage::render(sf::RenderWindow& window)
 	//window.draw(circle);
 }
 
-void GamePage::CreateCannonball()
+void GamePage::CreateCannonball(sf::Vector2f for_vec, float speed)
 {
-	Cannonball cannonball(res_manager.getTexture(GameResourceManager::TypeTexture::CANNONBALL));
+	Cannonball cannonball(res_manager.getTexture(GameResourceManager::TypeTexture::CANNONBALL), for_vec, speed);
 	cannonball.CenterOrigin();
 	cannonball.setPosition(cursor.getX(), cursor.getY());
 	cannonball_list.push_back(cannonball);
