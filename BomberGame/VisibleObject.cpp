@@ -10,16 +10,15 @@ void VisibleObject::draw(sf::RenderTarget& target, sf::RenderStates states) cons
 	target.draw(sprite_);
 }
 
-bool VisibleObject::IsContains(float X, float Y) const
+bool VisibleObject::IsContains(sf::Vector2f vec) const
 {
-	return (sprite_.getGlobalBounds().contains(X, Y));
+	return (sprite_.getGlobalBounds().contains(vec));
 }
 
-void VisibleObject::setPosition(float X, float Y)
+void VisibleObject::setPosition(sf::Vector2f pos)
 {
-	X_ = X;
-	Y_ = Y;
-	sprite_.setPosition(X_, Y_);
+	position = pos;
+	sprite_.setPosition(position);
 }
 
 void VisibleObject::CenterOrigin()

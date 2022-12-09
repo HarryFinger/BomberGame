@@ -26,5 +26,5 @@ float Cannonball::getRadius()
 
 sf::Vector2f Cannonball::getPositionVector()
 {
-	return sf::Vector2f(X_, Y_);
+	return sf::Vector2f(position);
 }

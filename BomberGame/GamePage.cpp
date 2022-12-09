@@ -16,7 +16,7 @@ GamePage::GamePage()
 {
 	// cursor
 	cursor.CenterOrigin();
-	cursor.setPosition(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f);
+	cursor.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f));
 
 	// debug
 	circle.setFillColor(sf::Color::Blue);
@@ -40,8 +40,9 @@ void GamePage::processInput(const sf::Event& event)
 	{
 		float mouse_x = static_cast<float>(event.mouseMove.x);
 		float mouse_y = static_cast<float>(event.mouseMove.y);
-		cursor.setPosition(mouse_x, mouse_y);
-		gun.updateAimCoordinate(mouse_x, mouse_y);
+		sf::Vector2f mouse_vec(mouse_x, mouse_y);
+		cursor.setPosition(mouse_vec);
+		gun.UpdateAimPosition(mouse_vec);
 	}
 }
 
@@ -87,7 +88,7 @@ void GamePage::CreateCannonball(sf::Vector2f for_vec, float speed)
 {
 	Cannonball cannonball(res_manager.getTexture(GameResourceManager::TypeTexture::CANNONBALL), for_vec, speed);
 	cannonball.CenterOrigin();
-	cannonball.setPosition(cursor.getX(), cursor.getY());
+	cannonball.setPosition(cursor.getPosition());
 	cannonball_list.push_back(cannonball);
 	is_left_button_clicked = false;
 }

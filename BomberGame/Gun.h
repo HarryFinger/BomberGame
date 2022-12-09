@@ -14,7 +14,7 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(float delta_time);
 
-	void updateAimCoordinate(float X, float Y) { aim_X = X; aim_Y = Y; };
+	void UpdateAimPosition(sf::Vector2f pos) { aim_position = pos; };
 	sf::Vector2f getForwardVercor() { return forward_vector; }
 
 private:
@@ -23,7 +23,6 @@ private:
 
 	sf::Vector2f forward_vector;
 
-	float aim_X = 0.0f;
-	float aim_Y = 0.0f;
+	sf::Vector2f aim_position;
 };
 

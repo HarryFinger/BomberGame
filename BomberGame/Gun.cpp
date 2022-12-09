@@ -7,22 +7,22 @@ Gun::Gun(const sf::Texture& cannon_texture, const sf::Texture& stand_texture):
 	, stand(stand_texture)
 {
 	stand.CenterOrigin();
-	stand.setPosition(tools::getWindowWidth() / 2.0f, 19.0f * tools::getWindowHeight() / 20.0f);
+	stand.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, 19.0f * tools::getWindowHeight() / 20.0f));
 
 	cannon.setRelativeOrigin(0.5f, 0.69f);
-	cannon.setPosition(tools::getWindowWidth() / 2.0f, 18.1f * tools::getWindowHeight() / 20.0f);
+	cannon.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, 18.1f * tools::getWindowHeight() / 20.0f));
 }
 
 // UPDATE STATE
 void Gun::update(float delta_time)
 {
 	// todo
-	forward_vector = tools::NormalizeVector(sf::Vector2f(aim_X - cannon.getX(), aim_Y - cannon.getY()));
+	forward_vector = tools::NormalizeVector(sf::Vector2f(aim_position.x - cannon.getPosition().x, aim_position.y - cannon.getPosition().y));
 
 	// sf::Vector2f(0.f, -1.f) is unit vector pointing up
 	float alpha = std::acos(tools::DotProduct(sf::Vector2f(0.0f, -1.0f), forward_vector)) * tools::getRadToDegrees();
 
-	if (aim_X < tools::getWindowWidth() / 2.0f)
+	if (aim_position.x < tools::getWindowWidth() / 2.0f)
 	{
 		alpha *= -1.0f;
 	}

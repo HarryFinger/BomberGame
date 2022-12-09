@@ -6,8 +6,8 @@
 
 Manager::Manager(sf::RenderWindow* pwindow_) : pwindow(pwindow_)
 {
-	//current_state = std::make_unique<MenuPage>();
-	current_state = std::make_unique<GamePage>();
+	current_state = std::make_unique<MenuPage>();
+	//current_state = std::make_unique<GamePage>();
 }
 
 void Manager::processInput(const sf::Event& event)

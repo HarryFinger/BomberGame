@@ -8,19 +8,19 @@
 
 MenuPage::MenuPage(): cursor(res_manager.getTexture(MenuResourceManager::TypeTexture::CURSOR))
 {
-	cursor.setPosition(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f);
+	cursor.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f));
 
 	VisibleObject background(res_manager.getTexture(MenuResourceManager::TypeTexture::BACKGROUND));
 	object_list.push_back(background);
 
 	Button button1(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_1), Button::Type::START);
 	button1.CenterOrigin();
-	button1.setPosition(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 3.0f);
+	button1.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 3.0f));
 	button_list.push_back(button1);
 
 	Button button3(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_3), Button::Type::EXIT);
 	button3.CenterOrigin();
-	button3.setPosition(tools::getWindowWidth() / 2.0f, 2.0f * tools::getWindowHeight() / 3.0f);
+	button3.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, 2.0f * tools::getWindowHeight() / 3.0f));
 	button_list.push_back(button3);
 
 }
@@ -39,7 +39,7 @@ void MenuPage::processInput(const sf::Event& event)
 	{
 		float mouse_x = static_cast<float>(event.mouseMove.x);
 		float mouse_y = static_cast<float>(event.mouseMove.y);
-		cursor.setPosition(mouse_x, mouse_y);
+		cursor.setPosition(sf::Vector2f(mouse_x, mouse_y));
 	}
 }
 
@@ -85,7 +85,7 @@ Button* MenuPage::PressedButton()
 {
 	for (auto& button_el : button_list)
 	{
-		if (button_el.IsContains(cursor.getX(), cursor.getY()))
+		if (button_el.IsContains(cursor.getPosition()))
 		{
 			return &button_el;
 		}

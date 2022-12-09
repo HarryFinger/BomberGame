@@ -7,7 +7,7 @@ Timer::Timer(const sf::Texture& clock_texture, const sf::Font& timer_font):
 {
 	clock.CenterOrigin();
 	clock.setScale(1.35f, 1.35f);
-	clock.setPosition(tools::getWindowWidth() - 75.0f, tools::getWindowHeight() - 75.0f);
+	clock.setPosition(sf::Vector2f(tools::getWindowWidth() - 75.0f, tools::getWindowHeight() - 75.0f));
 
 	timer.setCharacterSize(38);
 	timer.setFillColor(sf::Color::Yellow);
