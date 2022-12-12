@@ -6,31 +6,30 @@ namespace
 
 } // namespace
 
-Button::Button(const sf::Texture& texture, Button::Type type) : VisibleObject(texture), type_(type)
+Button::Button(const sf::Texture& texture, Button::Type type)
+	: VisibleObject(texture)
+	, type_(type)
+	, original_scale(sprite_.getScale())
 {
 	this->CenterOrigin();
-	original_scale = sprite_.getScale();
 }
 
 void Button::update(float delta_time)
 {
+	VisibleObject::update(delta_time);
+
 	if (on_hover)
 	{
-		ScaleUp();
+		setScale(SCALE_FACTOR);
 	}
 	else
 	{
-		ResetScale();
+		setScale(1.0f);
 	}
 	on_hover = false;
 }
 
-void Button::ScaleUp()
+void Button::setScale(float scale)
 {
-	sprite_.setScale(original_scale.x * SCALE_FACTOR, original_scale.y * SCALE_FACTOR);
-}
-
-void Button::ResetScale()
-{
-	sprite_.setScale(original_scale);
+	sprite_.setScale(original_scale * scale);
 }

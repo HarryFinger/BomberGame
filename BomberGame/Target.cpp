@@ -6,7 +6,10 @@ namespace
 	constexpr float BASE_SPEED = 200.0f;
 }
 
-Target::Target(const sf::Texture& texture, Type type, sf::Vector2f for_vec, sf::Vector2f position): VisibleObject(texture), type_(type), forward_vector(for_vec)
+Target::Target(const sf::Texture& texture, Type type, const sf::Vector2f& for_vec, const sf::Vector2f& position)
+	: VisibleObject(texture)
+	, type_(type)
+	, forward_vector(for_vec)
 {
 	sprite_.setTextureRect(sf::IntRect(0,0,80,80));
 	switch (type_)

@@ -1,6 +1,6 @@
 #include "Page.h"
 
-Page::TaskType Page::getTaskType()
+Page::TargetType Page::getTargetType() const
 {
-    return task_type;
+    return target_type;
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "VisibleObject.h"
 
 class Button final: public VisibleObject
@@ -8,23 +9,22 @@ public:
 	{
 		START,
 		EXIT,
-		EMPTY
+		EMPTY,
 	};
 
 	Button(const sf::Texture& texture, Button::Type type);
-	void update(float delta_time);
-
+	void update(float delta_time) override;
 	
 	Type getButtonType() const { return type_; }
-	void setOnHover() { on_hover = true; };
+	void setHover(bool hover) { on_hover = hover; };
 
 private:
-	void ScaleUp();
-	void ResetScale();
-private:
+	void setScale(float scale);
 
-	Type type_ = Type::EMPTY;
-	sf::Vector2f original_scale;
+private:
+	const Type type_;
+	const sf::Vector2f original_scale;
+
 	bool on_hover = false;
 };
 

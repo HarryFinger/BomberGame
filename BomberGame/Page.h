@@ -5,22 +5,19 @@
 class Page
 {
 public:
-	enum class TaskType
+	enum class TargetType
 	{
-		START,
+		MENU,
+		GAME,
 		EXIT,
-		WIN,
-		LOSE,
-		RESTART,
-
-		NOTHING
+		IDLE,
 	};
-public:
-	TaskType getTaskType();
+
+	TargetType getTargetType() const;
 	virtual void processInput(const sf::Event& event) = 0;
 	virtual void update(float delta_time) = 0;
 	virtual void render(sf::RenderWindow& window) = 0;
 
 protected:
-	TaskType task_type = TaskType::NOTHING;
+	TargetType target_type = TargetType::IDLE;
 };

@@ -17,23 +17,18 @@ void Manager::processInput(const sf::Event& event)
 
 void Manager::update(float delta_time)
 {
-	switch (current_state->getTaskType())
+	switch (current_state->getTargetType())
 	{
-		case Page::TaskType::START:
-		{
-			current_state = std::make_unique<GamePage>();
-		}
+		case Page::TargetType::MENU:
+			current_state = std::make_unique<MenuPage>();
 		break;
-		case Page::TaskType::RESTART:
-		{
+		case Page::TargetType::GAME:
 			current_state = std::make_unique<GamePage>();
-		}
 		break;
-		case Page::TaskType::EXIT:
-		{
+		case Page::TargetType::EXIT:
 			pwindow->close();
-		}
 		break;
+
 		default:
 		break;
 	}

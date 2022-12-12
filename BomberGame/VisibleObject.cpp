@@ -1,7 +1,8 @@
 #include "VisibleObject.h"
 #include <iostream>
 
-VisibleObject::VisibleObject(const sf::Texture& texture) : sprite_(texture)
+VisibleObject::VisibleObject(const sf::Texture& texture)
+	: sprite_(texture)
 {
 }
 
@@ -10,28 +11,26 @@ void VisibleObject::draw(sf::RenderTarget& target, sf::RenderStates states) cons
 	target.draw(sprite_);
 }
 
-bool VisibleObject::IsContains(sf::Vector2f vec) const
+bool VisibleObject::IsContains(const sf::Vector2f& vec) const
 {
-	return (sprite_.getGlobalBounds().contains(vec));
+	return sprite_.getGlobalBounds().contains(vec);
 }
 
-void VisibleObject::setPosition(sf::Vector2f position)
+void VisibleObject::setPosition(const sf::Vector2f& position)
 {
 	sprite_.setPosition(position);
 }
 
 void VisibleObject::CenterOrigin()
 {
-	auto result = sprite_.getTextureRect();
-	auto origin_center_y = result.height / 2.0f;
-	auto origin_center_x = result.width / 2.0f;
-	sprite_.setOrigin(origin_center_x, origin_center_y);
+	setRelativeOrigin({ 0.5f, 0.5f });
 }
 
-void VisibleObject::setRelativeOrigin(float rate_X, float rate_Y)
+void VisibleObject::setRelativeOrigin(const sf::Vector2f& rate)
 {
-	float coordinate_X = sprite_.getTextureRect().width * rate_X;
-	float coordinate_Y = sprite_.getTextureRect().height * rate_Y;
+	const auto& rect = sprite_.getTextureRect();
+	const auto coordinate_X = rect.width * rate.x;
+	const auto coordinate_Y = rect.height * rate.y;
 	sprite_.setOrigin(coordinate_X, coordinate_Y);
 }
 

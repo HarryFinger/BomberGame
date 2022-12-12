@@ -7,6 +7,9 @@
 class GameResourceManager final
 {
 public:
+	GameResourceManager();
+
+public:
 	enum class TypeTexture
 	{
 		BACKGROUND,
@@ -18,20 +21,17 @@ public:
 		CLOCK,
 		SHIELD,
 		WIN,
-		LOSE
+		LOSE,
 	};
 	enum class TypeFont
 	{
-		FRUIT_DAYS
+		FRUIT_DAYS,
 	};
+
+	const sf::Texture& getTexture(TypeTexture type) const;
+	const sf::Font& getFont(TypeFont type) const;
 
 private:
 	std::unordered_map<TypeTexture, sf::Texture> texture_map_;
 	std::unordered_map<TypeFont, sf::Font> font_map_;
-
-public:
-	GameResourceManager();
-	const sf::Texture& getTexture(TypeTexture type) const;
-	const sf::Font& getFont(TypeFont type) const;
-
 };

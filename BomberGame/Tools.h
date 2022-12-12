@@ -12,10 +12,10 @@ namespace tools
 	float getCannonRotationLimit();
 
 	// collision part
-	float DotProduct(sf::Vector2f a, sf::Vector2f b);
-	float DistanceBetweenTwoObjects(sf::Vector2f a, sf::Vector2f b);
-	sf::Vector2f NormalizeVector(sf::Vector2f vec);
-	sf::Vector2f CalcNormalizeReflectionVector(sf::Vector2f inc_vec, sf::Vector2f normal_vec);
+	float DotProduct(const sf::Vector2f& a, const sf::Vector2f& b);
+	float DistanceBetweenObjects(const sf::Vector2f& a, const sf::Vector2f& b);
+	sf::Vector2f NormalizeVector(const sf::Vector2f& vec);
+	sf::Vector2f CalcNormalizeReflectionVector(const sf::Vector2f& inc_vec, const sf::Vector2f& normal_vec);
 
 	template<typename T>
 	constexpr T Clamp(const T& v, const T& from, const T& to)

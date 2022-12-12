@@ -25,6 +25,6 @@ private:
 	bool is_left_button_clicked = false;
 	
 private:
-	Button* ButtonOnHover();
+	Button* getButtonOnHover();
 };
 

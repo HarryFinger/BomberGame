@@ -40,5 +40,13 @@ private:
 	std::list<Cannonball> cannonball_list;
 	std::list<Target> target_list;
 
+	enum class State
+	{
+		WIN,
+		LOSE,
+		IDLE,
+	};
+
+	State state = State::IDLE;
 };
 

@@ -18,8 +18,6 @@ GamePage::GamePage()
 	, lose(res_manager.getTexture(GameResourceManager::TypeTexture::LOSE))
 
 {
-	task_type = TaskType::NOTHING;
-
 	lose.CenterOrigin();
 	lose.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f - 100.f));
 	win.CenterOrigin();
@@ -45,16 +43,17 @@ GamePage::GamePage()
 // INPUT STATE
 void GamePage::processInput(const sf::Event& event)
 {
-	if (task_type == GamePage::TaskType::LOSE || task_type == GamePage::TaskType::WIN)
+	if (event.key.code == sf::Keyboard::Escape)
 	{
-		if (event.key.code == sf::Keyboard::Escape)
-		{
-			task_type = GamePage::TaskType::EXIT;
-			return;
-		}
+		target_type = GamePage::TargetType::MENU;
+		return;
+	}
+
+	if (state == GamePage::State::LOSE || state == GamePage::State::WIN)
+	{
 		if (event.type == sf::Event::EventType::KeyPressed || event.type == event.MouseButtonPressed)
 		{
-			task_type = GamePage::TaskType::RESTART;
+			target_type = GamePage::TargetType::GAME;
 			return;
 		}
 	}
@@ -82,34 +81,32 @@ void GamePage::update(float delta_time)
 {
 	if (timer.IsTimerEnd() || gun.IsDead())
 	{
-		this->task_type = TaskType::LOSE;
+		this->state = State::LOSE;
 	}
-	if (target_list.size() == 0)
+	else if (target_list.size() == 0)
 	{
-		this->task_type = TaskType::WIN;
+		this->state = State::WIN;
 	}
-
-	if(this->task_type == TaskType::NOTHING)
+	else if (this->state == State::IDLE)
 	{
 		// target and cannonball collisions
 		for (auto cannonball_it = cannonball_list.begin(), cannonball_it_last = cannonball_list.end(); cannonball_it != cannonball_it_last; ++cannonball_it)
 		{
 			for (auto target_it = target_list.begin(), target_it_last = target_list.end(); target_it != target_it_last; ++target_it)
 			{
-				float distance = tools::DistanceBetweenTwoObjects(cannonball_it->getPosition(), target_it->getPosition());
+				const auto distance = tools::DistanceBetweenObjects(cannonball_it->getPosition(), target_it->getPosition());
+
+				if (distance <= cannonball_it->getRadius() + target_it->getRadius()) // collision happens
 				{
-					if (distance <= cannonball_it->getRadius() + target_it->getRadius()) // collision happens
+					cannonball_it = cannonball_list.erase(cannonball_it);
+					target_it->DealingDamage();
+					if (target_it->IsDead())
 					{
-						cannonball_it = cannonball_list.erase(cannonball_it);
-						target_it->DealingDamage();
-						if (target_it->IsDead())
-						{
-							target_it = target_list.erase(target_it);
-						}
-						if (cannonball_it == cannonball_it_last || target_it == target_it_last)
-						{
-							goto END;
-						}
+						target_it = target_list.erase(target_it);
+					}
+					if (cannonball_it == cannonball_it_last || target_it == target_it_last)
+					{
+						goto END;
 					}
 				}
 			}
@@ -119,13 +116,13 @@ void GamePage::update(float delta_time)
 		// shield and target collision
 		for (auto& target : target_list)
 		{
-			float distance = tools::DistanceBetweenTwoObjects(target.getPosition(), gun.getShieldPosition());
+			const auto distance = tools::DistanceBetweenObjects(target.getPosition(), gun.getShieldPosition());
 
 			if (distance <= target.getRadius() + gun.getShieldRadius()) // collision happens
 			{
 				sf::Vector2f new_vec(target.getPosition() - gun.getShieldPosition());
 				sf::Vector2f norm_new_vec = tools::NormalizeVector(new_vec);
-				target.ChangeForwardVector(norm_new_vec);
+				target.setForwardVector(norm_new_vec);
 				gun.DealingDamage(26.0f);
 			}
 		}
@@ -140,16 +137,16 @@ void GamePage::update(float delta_time)
 
 				for (auto it_end = target_list.end(); ball_it_second != it_end; ++ball_it_second)
 				{
-					float distance = tools::DistanceBetweenTwoObjects(ball_it_first->getPosition(), ball_it_second->getPosition());
+					const auto distance = tools::DistanceBetweenObjects(ball_it_first->getPosition(), ball_it_second->getPosition());
 
 					if (distance <= (ball_it_first->getRadius() + ball_it_second->getRadius())) // collision happens
 					{
 						sf::Vector2f new_vec(ball_it_first->getPosition() - ball_it_second->getPosition());
 						sf::Vector2f norm_new_vec = tools::NormalizeVector(new_vec);
-						ball_it_first->ChangeForwardVector(norm_new_vec);
+						ball_it_first->setForwardVector(norm_new_vec);
 
-						norm_new_vec *= -1.f;
-						ball_it_second->ChangeForwardVector(norm_new_vec);
+						norm_new_vec = -norm_new_vec;
+						ball_it_second->setForwardVector(norm_new_vec);
 					}
 				}
 			}
@@ -200,14 +197,13 @@ void GamePage::render(sf::RenderWindow& window)
 	window.draw(timer);
 	window.draw(cursor);
 	
-	if (this->task_type == GamePage::TaskType::WIN)
+	if (this->state == GamePage::State::WIN)
 	{
 		window.draw(win);
 	}
-	if (this->task_type == GamePage::TaskType::LOSE)
+	else if (this->state == GamePage::State::LOSE)
 	{
 		window.draw(lose);
-
 	}
 }
 

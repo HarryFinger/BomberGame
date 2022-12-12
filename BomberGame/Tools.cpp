@@ -2,14 +2,14 @@
 
 namespace
 {
-    constexpr float WINDOW_WIDTH_SIZE = 1024.f;
-    constexpr float WINDOW_HEIGHT_SIZE = 768.f;
-    constexpr float FPS = 1.0f / 30.0f;
-    constexpr float PI = 3.1415926f;
-    constexpr float RAD_TO_DEGREES = 180.0f / PI;
-    constexpr float DEGREES_TO_RAD = PI / 180.0f;
+    constexpr auto WINDOW_WIDTH_SIZE = 1024.0f;
+    constexpr auto WINDOW_HEIGHT_SIZE = 768.0f;
+    constexpr auto FPS = 1.0f / 30.0f;
+    constexpr auto PI = 3.1415926f;
+    constexpr auto RAD_TO_DEGREES = 180.0f / PI;
+    constexpr auto DEGREES_TO_RAD = PI / 180.0f;
 
-    constexpr float CANNON_ROTATION_LIMIT = 60.0f;
+    constexpr auto CANNON_ROTATION_LIMIT = 60.0f;
 
 } // namespace
 
@@ -46,29 +46,27 @@ namespace tools
     }
 
     // collision part
-    float DotProduct(sf::Vector2f a, sf::Vector2f b)
+    float DotProduct(const sf::Vector2f& a, const sf::Vector2f& b)
     {
-        return  a.x * b.x + a.y * b.y;
+        return a.x * b.x + a.y * b.y;
     }
 
-    float DistanceBetweenTwoObjects(sf::Vector2f a, sf::Vector2f b)
+    float DistanceBetweenObjects(const sf::Vector2f& a, const sf::Vector2f& b)
     {
-        return (float)std::sqrt(std::pow((a.x - b.x), 2) + std::pow((a.y - b.y), 2));
+        return std::sqrt(std::pow(a.x - b.x, 2.0f) + std::pow(a.y - b.y, 2.0f));
     }
 
-    sf::Vector2f NormalizeVector(sf::Vector2f vec)
+    sf::Vector2f NormalizeVector(const sf::Vector2f& vec)
     {
-        float length = (float)(std::sqrt(vec.x * vec.x + vec.y * vec.y));
-        float X = vec.x / length;
-        float Y = vec.y / length;
-        return sf::Vector2f(X, Y);
+        const auto ratio = 1.0f / std::sqrt(vec.x * vec.x + vec.y * vec.y);
+        return vec * ratio;
     }
 
-    sf::Vector2f CalcNormalizeReflectionVector(sf::Vector2f inc_vec, sf::Vector2f normal_vec)
+    sf::Vector2f CalcNormalizeReflectionVector(const sf::Vector2f& inc_vec, const sf::Vector2f& normal_vec)
     {
-        float dot_prod = DotProduct(inc_vec, normal_vec);
-        sf::Vector2f p_vec = dot_prod * normal_vec;
-        return NormalizeVector(inc_vec - (2.f * p_vec));
+        const auto dot_prod = DotProduct(inc_vec, normal_vec);
+        const auto p_vec = dot_prod * normal_vec;
+        return NormalizeVector(inc_vec - (2.0f * p_vec));
     }
 
 } // namespace tools

@@ -16,7 +16,7 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(float delta_time);
 
-	void UpdateAimPosition(sf::Vector2f pos) { aim_position = pos; };
+	void UpdateAimPosition(const sf::Vector2f& pos) { aim_position = pos; };
 	sf::Vector2f getForwardVercor() const { return forward_vector; }
 	sf::Vector2f getPosition() const { return cannon.getPosition(); }
 	void TryToShoot();
@@ -26,7 +26,7 @@ public:
 	
 	using CreateCannonballFunction = std::function<void()>;
 	void setCreateCannonballFunction(CreateCannonballFunction create_cannonball_func);
-	bool IsDead();
+	bool IsDead() const;
 	void DealingDamage(float damage);
 
 private:

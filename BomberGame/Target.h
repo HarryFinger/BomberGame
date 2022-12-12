@@ -13,18 +13,19 @@ public:
 	};
 
 public:
-	Target(const sf::Texture& texture, Type type, sf::Vector2f for_vec, sf::Vector2f position);
+	Target(const sf::Texture& texture, Type type, const sf::Vector2f& for_vec, const sf::Vector2f& position);
 	void update(float delta_time);
-	void ChangeForwardVector(sf::Vector2f for_vec) { forward_vector = for_vec; };
-	float getRadius() { return radius; }
+	void setForwardVector(const sf::Vector2f& for_vec) { forward_vector = for_vec; };
+	float getRadius() const { return radius; }
 	bool IsDead();
 	void DealingDamage();
 
 private:
+	const Type type_ = Type::GREEN;
 	sf::Vector2f forward_vector;
+
 	float radius;
-	float speed;
+	float speed = 0.0f;
 	float hit_points = 100.f;
-	Type type_ = Type::GREEN;
 };
 
