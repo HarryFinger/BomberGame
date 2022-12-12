@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Cannonball.h"
+#include "Cursor.h"
 #include "GameResourceManager.h"
 #include "Gun.h"
 #include "Page.h"
 #include "VisibleObject.h"
+#include "Target.h"
 #include "Timer.h"
 
 #include <SFML/Graphics.hpp>
@@ -22,8 +24,7 @@ public:
 
 private:
 	void CreateCannonball(sf::Vector2f for_vec, float speed);
-	void CannonballUpdateOrDestroy(float delta_time);
-
+	void CreateTarget();
 	
 private:
 	GameResourceManager res_manager;
@@ -31,13 +32,13 @@ private:
 	Gun gun;
 	Timer timer;
 
-	VisibleObject cursor;
+	Cursor cursor;
 	VisibleObject background;
+	VisibleObject win;
+	VisibleObject lose;
 
 	std::list<Cannonball> cannonball_list;
+	std::list<Target> target_list;
 
-	sf::CircleShape circle; // debug
-
-	bool is_left_button_clicked = false;
 };
 

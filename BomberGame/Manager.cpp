@@ -24,12 +24,20 @@ void Manager::update(float delta_time)
 			current_state = std::make_unique<GamePage>();
 		}
 		break;
+		case Page::TaskType::RESTART:
+		{
+			current_state = std::make_unique<GamePage>();
+		}
+		break;
 		case Page::TaskType::EXIT:
 		{
 			pwindow->close();
 		}
 		break;
+		default:
+		break;
 	}
+	
 	current_state->update(delta_time);
 }
 

@@ -33,6 +33,18 @@ GameResourceManager::GameResourceManager()
 	texture.setSmooth(1);
 	texture_map_.emplace(TypeTexture::CLOCK, texture);
 
+	texture.loadFromFile("./data/GamePage/Shield.png");
+	texture.setSmooth(1);
+	texture_map_.emplace(TypeTexture::SHIELD, texture);
+
+	texture.loadFromFile("./data/GamePage/Win.png");
+	texture.setSmooth(1);
+	texture_map_.emplace(TypeTexture::WIN, texture);
+
+	texture.loadFromFile("./data/GamePage/Lose.png");
+	texture.setSmooth(1);
+	texture_map_.emplace(TypeTexture::LOSE, texture);
+
 	// font emplacing
 	sf::Font font;
 	font.loadFromFile("./data/GamePage/font/fruit_days.ttf");

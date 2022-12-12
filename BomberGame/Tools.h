@@ -4,11 +4,12 @@
 
 namespace tools
 {
-	uint32_t getWindowWidth();
-	uint32_t getWindowHeight();
+	float getWindowWidth();
+	float getWindowHeight();
 	float getFPS();
-	float getRadToDegrees();
-	float getCanRotLimit();
+	float RadianToDegrees();
+	float DegreesToRadian();
+	float getCannonRotationLimit();
 
 	// collision part
 	float DotProduct(sf::Vector2f a, sf::Vector2f b);

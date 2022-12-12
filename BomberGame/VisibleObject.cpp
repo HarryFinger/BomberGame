@@ -15,9 +15,8 @@ bool VisibleObject::IsContains(sf::Vector2f vec) const
 	return (sprite_.getGlobalBounds().contains(vec));
 }
 
-void VisibleObject::setPosition(sf::Vector2f pos)
+void VisibleObject::setPosition(sf::Vector2f position)
 {
-	position = pos;
 	sprite_.setPosition(position);
 }
 
@@ -40,3 +39,4 @@ void VisibleObject::setRotation(float angle)
 {
 	sprite_.setRotation(angle);
 }
+

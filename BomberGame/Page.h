@@ -10,13 +10,12 @@ public:
 		START,
 		EXIT,
 		WIN,
-		DEFEAT,
+		LOSE,
+		RESTART,
 
 		NOTHING
 	};
 public:
-	Page() {};
-	
 	TaskType getTaskType();
 	virtual void processInput(const sf::Event& event) = 0;
 	virtual void update(float delta_time) = 0;

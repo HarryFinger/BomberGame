@@ -9,6 +9,7 @@
 MenuPage::MenuPage(): cursor(res_manager.getTexture(MenuResourceManager::TypeTexture::CURSOR))
 {
 	cursor.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f));
+	cursor.StartFlicker();
 
 	VisibleObject background(res_manager.getTexture(MenuResourceManager::TypeTexture::BACKGROUND));
 	object_list.push_back(background);
@@ -45,9 +46,10 @@ void MenuPage::processInput(const sf::Event& event)
 
 void MenuPage::update(float delta_time)
 {
+	auto button = ButtonOnHover();
+
 	if (is_left_button_clicked)
 	{
-		auto button = PressedButton();
 		if (button != nullptr)
 		{
 			switch (button->getButtonType())
@@ -65,29 +67,41 @@ void MenuPage::update(float delta_time)
 			}
 		}
 	}
-		
+
+	for (auto& button: button_list)
+	{
+		button.update(delta_time);
+	}
+
+	cursor.update(delta_time);
+
 	is_left_button_clicked = false;
 }
 
 void MenuPage::render(sf::RenderWindow& window)
 {
-	for (const auto&  obj_el : object_list)
-		window.draw(obj_el);
+	for (const auto& obj : object_list)
+	{
+		window.draw(obj);
+	}
 
 	for (const auto& button_el : button_list)
+	{
 		window.draw(button_el);
+	}
 
 	window.draw(cursor);
 }
 
 
-Button* MenuPage::PressedButton()
+Button* MenuPage::ButtonOnHover()
 {
-	for (auto& button_el : button_list)
+	for (auto& button : button_list)
 	{
-		if (button_el.IsContains(cursor.getPosition()))
+		if (button.IsContains(cursor.getPosition()))
 		{
-			return &button_el;
+			button.setOnHover();
+			return &button;
 		}
 	}
 	return nullptr;

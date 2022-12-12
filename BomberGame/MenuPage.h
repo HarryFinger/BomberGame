@@ -1,8 +1,10 @@
 #pragma once
+
 #include "Page.h"
 #include "MenuResourceManager.h"
 #include "VisibleObject.h"
 #include "Button.h"
+#include "Cursor.h"
 
 #include <list>
 
@@ -19,10 +21,10 @@ private:
 
 	std::list<VisibleObject> object_list;
 	std::list<Button> button_list;
-	VisibleObject cursor;
+	Cursor cursor;
 	bool is_left_button_clicked = false;
 	
 private:
-	Button* PressedButton();
+	Button* ButtonOnHover();
 };
 

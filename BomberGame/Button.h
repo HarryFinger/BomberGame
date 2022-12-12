@@ -11,12 +11,20 @@ public:
 		EMPTY
 	};
 
-private:
-	Type type_ = Type::EMPTY;
+	Button(const sf::Texture& texture, Button::Type type);
+	void update(float delta_time);
 
-public:
-	Button(const sf::Texture& texture, Button::Type type): VisibleObject(texture), type_(type){}
 	
 	Type getButtonType() const { return type_; }
+	void setOnHover() { on_hover = true; };
+
+private:
+	void ScaleUp();
+	void ResetScale();
+private:
+
+	Type type_ = Type::EMPTY;
+	sf::Vector2f original_scale;
+	bool on_hover = false;
 };
 

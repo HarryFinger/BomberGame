@@ -69,6 +69,15 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\GamePage</Filter>
     </ClCompile>
+    <ClCompile Include="Target.cpp">
+      <Filter>Source Files\GamePage</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GamePage.h">
@@ -106,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files\GamePage</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.h">
+      <Filter>Header Files\GamePage</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

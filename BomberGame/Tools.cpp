@@ -2,23 +2,25 @@
 
 namespace
 {
-    constexpr uint32_t WINDOW_WIDTH_SIZE = 1024u;
-    constexpr uint32_t WINDOW_HEIGHT_SIZE = 768u;
-    constexpr float FPS = 1.0f / 25.0f;
+    constexpr float WINDOW_WIDTH_SIZE = 1024.f;
+    constexpr float WINDOW_HEIGHT_SIZE = 768.f;
+    constexpr float FPS = 1.0f / 30.0f;
     constexpr float PI = 3.1415926f;
-    constexpr float RAD_TO_DEGREES = 180.0f/ PI;
-    constexpr float CANNON_ROTATION_LIMIT = 45.0f;
+    constexpr float RAD_TO_DEGREES = 180.0f / PI;
+    constexpr float DEGREES_TO_RAD = PI / 180.0f;
+
+    constexpr float CANNON_ROTATION_LIMIT = 60.0f;
 
 } // namespace
 
 namespace tools
 {
-    uint32_t getWindowWidth()
+    float getWindowWidth()
     {
         return WINDOW_WIDTH_SIZE;
     }
 
-    uint32_t getWindowHeight()
+    float getWindowHeight()
     {
         return WINDOW_HEIGHT_SIZE;
     }
@@ -28,12 +30,17 @@ namespace tools
         return FPS;
     }
     // convert to degrtees
-    float getRadToDegrees()
+    float RadianToDegrees()
     {
         return RAD_TO_DEGREES;
     }
 
-    float getCanRotLimit()
+    float DegreesToRadian()
+    {
+        return DEGREES_TO_RAD;
+    }
+
+    float getCannonRotationLimit()
     {
         return CANNON_ROTATION_LIMIT;
     }

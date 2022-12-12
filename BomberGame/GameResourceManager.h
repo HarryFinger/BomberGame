@@ -15,7 +15,10 @@ public:
 		STAND,
 		CANNONBALL,
 		TARGET,
-		CLOCK
+		CLOCK,
+		SHIELD,
+		WIN,
+		LOSE
 	};
 	enum class TypeFont
 	{

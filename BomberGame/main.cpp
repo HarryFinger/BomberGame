@@ -13,8 +13,9 @@ int main()
 int WinMain()
 #endif
 {
-    sf::RenderWindow window(sf::VideoMode(tools::getWindowWidth(), tools::getWindowHeight()), "BoomberGame", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode((uint32_t)tools::getWindowWidth(), (uint32_t)tools::getWindowHeight()), "BoomberGame", sf::Style::Titlebar | sf::Style::Close);
     window.setMouseCursorVisible(0);
+    srand((unsigned)time(NULL));
 
     Manager manager(&window);
 
