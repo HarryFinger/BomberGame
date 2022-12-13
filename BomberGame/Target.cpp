@@ -14,33 +14,28 @@ Target::Target(const sf::Texture& texture, Type type, const sf::Vector2f& for_ve
 	sprite_.setTextureRect({ 0,0,80,80 });
 	switch (type_)
 	{
-		case Target::Type::GREEN:
-		{
-			sprite_.setColor(sf::Color::Green);
-			this->CenterOrigin();
-			sprite_.setScale(0.85f, 0.85f);
-			speed = BASE_SPEED + 100.0f;
-		}
-		break;
-		case Target::Type::YELLOW:
-		{
-			sprite_.setColor(sf::Color::Yellow);
-			this->CenterOrigin();
-			sprite_.setScale(1.0f, 1.0f);		
-			speed = BASE_SPEED;
-
-		}
-		break;
-		case Target::Type::RED:
-		{
-			sprite_.setColor(sf::Color::Magenta);
-			this->CenterOrigin();
-			sprite_.setScale(1.12f, 1.12f);
-			speed = BASE_SPEED - 70.0f;
-		}
+	case Target::Type::GREEN:
+		sprite_.setColor(sf::Color::Green);
+		this->CenterOrigin();
+		sprite_.setScale(0.85f, 0.85f);
+		speed = BASE_SPEED + 100.0f;
 		break;
 
-		default:
+	case Target::Type::YELLOW:
+		sprite_.setColor(sf::Color::Yellow);
+		this->CenterOrigin();
+		sprite_.setScale(1.0f, 1.0f);		
+		speed = BASE_SPEED;
+		break;
+
+	case Target::Type::RED:
+		sprite_.setColor(sf::Color::Magenta);
+		this->CenterOrigin();
+		sprite_.setScale(1.12f, 1.12f);
+		speed = BASE_SPEED - 70.0f;
+		break;
+
+	default:
 		break;
 	}
 
@@ -111,20 +106,18 @@ void Target::DealingDamage()
 	switch (type_)
 	{
 	case Target::Type::GREEN:
-	{
 		hit_points -= 100;
-	}
 		break;
+
 	case Target::Type::YELLOW:
-	{
 		hit_points -= 67;
-	}
 		break;
+
 	case Target::Type::RED:
-	{
 		hit_points -= 34;
-	}
 		break;
-	
+
+	default:
+		break;
 	}
 }

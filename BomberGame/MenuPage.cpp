@@ -81,29 +81,29 @@ void MenuPage::update(float delta_time)
 		{
 			switch (button->getButtonType())
 			{
-				case Button::Type::START_EASY:
+			case Button::Type::START_EASY:
 				this->target_type = TargetType::GAME;
 				game_difficulty = EASY_DIFFICULTY;
 				break;
 
-				case Button::Type::START_NORMAL:
+			case Button::Type::START_NORMAL:
 				this->target_type = TargetType::GAME;
 				game_difficulty = NORMAL_DIFFICULTY;
 				break;
 
-				case Button::Type::START_HARD:
+			case Button::Type::START_HARD:
 				this->target_type = TargetType::GAME;
 				game_difficulty = HARD_DIFFICULTY;
 				break;
 
-				case Button::Type::EXIT:
+			case Button::Type::EXIT:
 					this->target_type = TargetType::EXIT;
 				break;
 
-				case Button::Type::EMPTY:
+			case Button::Type::EMPTY:
 				break;
 
-				default:
+			default:
 				break;
 			}
 		}

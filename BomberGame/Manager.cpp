@@ -2,8 +2,6 @@
 #include "MenuPage.h"
 #include "Manager.h"
 
-#include <iostream>
-
 Manager::Manager(sf::RenderWindow* pwindow_) : pwindow(pwindow_)
 {
 	current_state = std::make_unique<MenuPage>();
@@ -18,13 +16,11 @@ void Manager::update(float delta_time)
 {
 	switch (current_state->getTargetType())
 	{
-		case Page::TargetType::MENU:
-		{
-			current_state = std::make_unique<MenuPage>();
-		}
+	case Page::TargetType::MENU:
+		current_state = std::make_unique<MenuPage>();
 		break;
 
-		case Page::TargetType::GAME:
+	case Page::TargetType::GAME:
 		{
 			MenuPage* p_page = dynamic_cast<MenuPage*>(current_state.get());
 			if (p_page != nullptr)
@@ -39,19 +35,15 @@ void Manager::update(float delta_time)
 		}
 		break;
 
-		case Page::TargetType::RESTART:
-		{
-			current_state = std::make_unique<GamePage>(current_difficulty);
-		}
+	case Page::TargetType::RESTART:
+		current_state = std::make_unique<GamePage>(current_difficulty);
 		break;
 
-		case Page::TargetType::EXIT:
-		{
-			pwindow->close();
-		}
+	case Page::TargetType::EXIT:
+		pwindow->close();
 		break;
 
-		default:
+	default:
 		break;
 	}
 	

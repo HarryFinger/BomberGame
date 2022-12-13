@@ -5,7 +5,8 @@ namespace
 {
 	constexpr float CANNONBALL_SPEED = 350.0f;
 	constexpr int32_t BASE_DAMAGE = 25;
-}
+
+} // namespace
 
 GamePage::GamePage(uint32_t target_number)
 	: gun( res_manager.getTexture(GameResourceManager::TypeTexture::CANNON)
