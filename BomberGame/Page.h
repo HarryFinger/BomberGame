@@ -9,6 +9,7 @@ public:
 	{
 		MENU,
 		GAME,
+		RESTART,
 		EXIT,
 		IDLE,
 	};

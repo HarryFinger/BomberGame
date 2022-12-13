@@ -21,7 +21,7 @@ public:
 	void setColor(const sf::Color& col) { sprite_.setColor(col); }
 	const sf::Color& getColor() const { return sprite_.getColor(); }
 	void setRotation(float angle); // param angle in degrees
-	const sf::FloatRect& getCollisionBox() const { return sprite_.getGlobalBounds(); }
+	sf::FloatRect getCollisionBox() const { return sprite_.getGlobalBounds(); }
 
 	const sf::Vector2f& getPosition() const { return sprite_.getPosition(); }
 	void setPosition(const sf::Vector2f& position);

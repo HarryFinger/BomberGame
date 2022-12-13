@@ -16,7 +16,7 @@ class GamePage final : public Page
 {
 
 public:
-	GamePage();
+	GamePage(uint32_t target_number);
 
 	void processInput(const sf::Event& event);
 	void update(float delta_time);

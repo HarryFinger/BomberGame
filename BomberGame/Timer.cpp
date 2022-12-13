@@ -1,19 +1,19 @@
 #include "Timer.h"
 #include "Tools.h"
 
-Timer::Timer(const sf::Texture& clock_texture, const sf::Font& timer_font):
-	clock_picture(clock_texture)
+Timer::Timer(const sf::Texture& clock_texture, const sf::Font& timer_font)
+	: clock_picture(clock_texture)
 	, clock_face("", timer_font)
 {
 	clock_picture.CenterOrigin();
-	clock_picture.setPosition(sf::Vector2f(tools::getWindowWidth() - 75.0f, tools::getWindowHeight() - 75.0f));
+	clock_picture.setPosition({ tools::getWindowWidth() - 75.0f, tools::getWindowHeight() - 75.0f });
 
 	clock_face.setCharacterSize(38);
 	clock_face.setFillColor(sf::Color::Yellow);
 	clock_face.setOutlineColor(sf::Color::Red);
 	clock_face.setOutlineThickness(2.0f);
 	clock_face.setLetterSpacing(2.0f);
-	clock_face.setPosition(tools::getWindowWidth() - 97.0f, tools::getWindowHeight() - 100.0f);
+	clock_face.setPosition(tools::getWindowWidth() - 99.0f, tools::getWindowHeight() - 100.0f);
 }
 
 void Timer::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -31,7 +31,7 @@ void Timer::update(float delta_time)
 		Flicker(delta_time);
 		if (!do_once)
 		{
-			clock_face.setPosition(clock_face.getPosition() + sf::Vector2f(6.f, 0.f));
+			clock_face.setPosition(clock_face.getPosition() + sf::Vector2f(8.f, 0.f));
 			do_once = true;
 		}
 	}

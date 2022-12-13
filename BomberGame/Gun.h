@@ -27,7 +27,7 @@ public:
 	using CreateCannonballFunction = std::function<void()>;
 	void setCreateCannonballFunction(CreateCannonballFunction create_cannonball_func);
 	bool IsDead() const;
-	void DealingDamage(float damage);
+	void DealingDamage(int32_t damage);
 
 private:
 	void IndicateCooldown();
@@ -44,8 +44,8 @@ private:
 	const float time_between_shots = 1.f;
 	float cooldown = 0.f;
 
-	float shield_hp = 100.0f;
-	float gun_hp = 10.f;
+	int32_t shield_hp = 100;
+	int32_t gun_hp = 10;
 	float radius;
 
 	float time_accumulator = 0.0f;

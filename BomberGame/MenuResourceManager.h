@@ -10,10 +10,11 @@ public:
 	enum class TypeTexture
 	{
 		BACKGROUND,
-		BUTTON_1,
-		BUTTON_2,
-		BUTTON_3,
-		CURSOR
+		BUTTON_EASY,
+		BUTTON_NORMAL,
+		BUTTON_HARD,
+		BUTTON_EXIT,
+		CURSOR,
 	};
 
 public:

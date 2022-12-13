@@ -16,4 +16,5 @@ public:
 private:
 	std::unique_ptr<Page> current_state;
 	sf::RenderWindow* pwindow;
+	uint32_t current_difficulty;
 };

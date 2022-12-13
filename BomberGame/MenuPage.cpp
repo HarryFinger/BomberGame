@@ -5,29 +5,56 @@
 #include <iostream>
 #include <string>
 
+namespace
+{
+	// number of target that will spawn in game
+	constexpr uint32_t EASY_DIFFICULTY = 5;
+	constexpr uint32_t NORMAL_DIFFICULTY = 7;
+	constexpr uint32_t HARD_DIFFICULTY = 9;
+
+} // namespace
 
 MenuPage::MenuPage(): cursor(res_manager.getTexture(MenuResourceManager::TypeTexture::CURSOR))
 {
-	cursor.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f));
+	sf::Mouse mouse;
+	cursor.setPosition((sf::Vector2f)mouse.getPosition());
 	cursor.StartFlicker();
 
 	VisibleObject background(res_manager.getTexture(MenuResourceManager::TypeTexture::BACKGROUND));
 	object_list.push_back(background);
 
-	Button button_start(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_1), Button::Type::START);
-	button_start.CenterOrigin();
-	button_start.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 3.0f));
-	button_list.push_back(button_start);
+	Button button_easy(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_EASY), Button::Type::START_EASY);
+	button_easy.CenterOrigin();
+	button_easy.setPosition({ 3.0f * tools::getWindowWidth() / 16.0f, 2.0f * tools::getWindowHeight() / 5.0f });
+	button_list.push_back(button_easy);
 
-	Button button_exit(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_3), Button::Type::EXIT);
+	Button button_normal(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_NORMAL), Button::Type::START_NORMAL);
+	button_normal.CenterOrigin();
+	button_normal.setPosition({ 8.0f * tools::getWindowWidth() / 16.0f, tools::getWindowHeight() / 5.0f });
+	button_list.push_back(button_normal);
+
+	Button button_hard(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_HARD), Button::Type::START_HARD);
+	button_hard.CenterOrigin();
+	button_hard.setPosition({ 13.0f * tools::getWindowWidth() / 16.0f, 2.0f * tools::getWindowHeight() / 5.0f });
+	button_list.push_back(button_hard);
+
+	Button button_exit(res_manager.getTexture(MenuResourceManager::TypeTexture::BUTTON_EXIT), Button::Type::EXIT);
 	button_exit.CenterOrigin();
-	button_exit.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, 2.0f * tools::getWindowHeight() / 3.0f));
+	button_exit.setPosition({ tools::getWindowWidth() / 2.0f, 4.0f * tools::getWindowHeight() / 5.0f });
 	button_list.push_back(button_exit);
 
 }
 
 void MenuPage::processInput(const sf::Event& event)
 {
+	if (event.type == sf::Event::KeyPressed)
+	{
+		if (event.key.code == sf::Keyboard::Escape)
+		{
+			target_type = Page::TargetType::EXIT;
+			return;
+		}
+	}
 	if (event.type == sf::Event::MouseButtonPressed)
 	{
 		if (event.mouseButton.button == sf::Mouse::Left)
@@ -54,16 +81,30 @@ void MenuPage::update(float delta_time)
 		{
 			switch (button->getButtonType())
 			{
-				case Button::Type::START:
-					this->target_type = TargetType::GAME;
-					break;
+				case Button::Type::START_EASY:
+				this->target_type = TargetType::GAME;
+				game_difficulty = EASY_DIFFICULTY;
+				break;
+
+				case Button::Type::START_NORMAL:
+				this->target_type = TargetType::GAME;
+				game_difficulty = NORMAL_DIFFICULTY;
+				break;
+
+				case Button::Type::START_HARD:
+				this->target_type = TargetType::GAME;
+				game_difficulty = HARD_DIFFICULTY;
+				break;
 
 				case Button::Type::EXIT:
 					this->target_type = TargetType::EXIT;
-					break;
+				break;
 
 				case Button::Type::EMPTY:
-					break;
+				break;
+
+				default:
+				break;
 			}
 		}
 	}

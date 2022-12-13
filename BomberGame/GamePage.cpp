@@ -3,10 +3,11 @@
 
 namespace 
 {
-	const float CANNONBALL_SPEED = 300.0f;
+	constexpr float CANNONBALL_SPEED = 350.0f;
+	constexpr int32_t BASE_DAMAGE = 25;
 }
 
-GamePage::GamePage()
+GamePage::GamePage(uint32_t target_number)
 	: gun( res_manager.getTexture(GameResourceManager::TypeTexture::CANNON)
 		, res_manager.getTexture(GameResourceManager::TypeTexture::STAND)
 		, res_manager.getTexture(GameResourceManager::TypeTexture::SHIELD) )
@@ -19,13 +20,15 @@ GamePage::GamePage()
 
 {
 	lose.CenterOrigin();
-	lose.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f - 100.f));
+	lose.setPosition({ tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f - 100.f });
 	win.CenterOrigin();
-	win.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f - 100.f));
+	win.setPosition({ tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f - 100.f });
 
 	// cursor
 	cursor.CenterOrigin();
-	cursor.setPosition(sf::Vector2f(tools::getWindowWidth() / 2.0f, tools::getWindowHeight() / 2.0f));
+	sf::Mouse mouse;
+	cursor.setPosition((sf::Vector2f)mouse.getPosition());
+
 	cursor.StartFlicker();
 
 	gun.setCreateCannonballFunction([this]() {
@@ -33,7 +36,7 @@ GamePage::GamePage()
 	});
 
 	// target spawner
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < target_number; i++)
 	{
 		CreateTarget();
 	}
@@ -53,7 +56,7 @@ void GamePage::processInput(const sf::Event& event)
 	{
 		if (event.type == sf::Event::EventType::KeyPressed || event.type == event.MouseButtonPressed)
 		{
-			target_type = GamePage::TargetType::GAME;
+			target_type = GamePage::TargetType::RESTART;
 			return;
 		}
 	}
@@ -98,12 +101,19 @@ void GamePage::update(float delta_time)
 
 				if (distance <= cannonball_it->getRadius() + target_it->getRadius()) // collision happens
 				{
-					cannonball_it = cannonball_list.erase(cannonball_it);
 					target_it->DealingDamage();
 					if (target_it->IsDead())
 					{
 						target_it = target_list.erase(target_it);
 					}
+					else
+					{
+						sf::Vector2f new_vec(target_it->getPosition() - cannonball_it->getPosition());
+						sf::Vector2f norm_new_vec = tools::NormalizeVector(new_vec);
+						target_it->setForwardVector(norm_new_vec);
+					}
+					cannonball_it = cannonball_list.erase(cannonball_it);
+
 					if (cannonball_it == cannonball_it_last || target_it == target_it_last)
 					{
 						goto END;
@@ -123,7 +133,7 @@ void GamePage::update(float delta_time)
 				sf::Vector2f new_vec(target.getPosition() - gun.getShieldPosition());
 				sf::Vector2f norm_new_vec = tools::NormalizeVector(new_vec);
 				target.setForwardVector(norm_new_vec);
-				gun.DealingDamage(26.0f);
+				gun.DealingDamage(BASE_DAMAGE);
 			}
 		}
 

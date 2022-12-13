@@ -9,7 +9,7 @@ namespace
     constexpr auto RAD_TO_DEGREES = 180.0f / PI;
     constexpr auto DEGREES_TO_RAD = PI / 180.0f;
 
-    constexpr auto CANNON_ROTATION_LIMIT = 60.0f;
+    constexpr auto CANNON_ROTATION_LIMIT = 70.0f;
 
 } // namespace
 

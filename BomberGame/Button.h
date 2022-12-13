@@ -7,7 +7,9 @@ class Button final: public VisibleObject
 public:
 	enum class Type
 	{
-		START,
+		START_EASY,
+		START_NORMAL,
+		START_HARD,
 		EXIT,
 		EMPTY,
 	};

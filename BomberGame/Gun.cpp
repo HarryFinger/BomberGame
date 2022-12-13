@@ -2,9 +2,6 @@
 
 #include "Tools.h"
 
-#include <iostream>
-
-// todo constexpr
 namespace
 {
 	const auto max_forward_vec_y = -std::cos(tools::getCannonRotationLimit()* tools::DegreesToRadian());
@@ -44,7 +41,7 @@ void Gun::update(float delta_time)
 		}
 	}
 
-	forward_vector = tools::NormalizeVector(sf::Vector2f(aim_position.x - cannon.getPosition().x, aim_position.y - cannon.getPosition().y));
+	forward_vector = tools::NormalizeVector({ aim_position.x - cannon.getPosition().x, aim_position.y - cannon.getPosition().y });
 
 	if (forward_vector.y > max_forward_vec_y)
 	{
@@ -58,15 +55,14 @@ void Gun::update(float delta_time)
 
 	// set shield hp 
 	sf::Uint8 hp_visibility;
-	if (shield_hp < 0.0f)
+	if (shield_hp <= 0)
 	{
 		hp_visibility = 0;
 	}
 	else
 	{
-		hp_visibility = (sf::Uint8)((shield_hp / 100.0f) * 255);
+		hp_visibility = (sf::Uint8)((shield_hp / 100.f) * 255);
 	}
-
 	shield.setColor({ 255, 255, 255, hp_visibility });
 }
 
@@ -84,12 +80,12 @@ void Gun::setCreateCannonballFunction(CreateCannonballFunction create_cannonball
 
 bool Gun::IsDead() const
 {
-	return gun_hp < 0.0f;
+	return gun_hp < 0;
 }
 
-void Gun::DealingDamage(float damage)
+void Gun::DealingDamage(int32_t damage)
 {
-	if (shield_hp > 0.f)
+	if (shield_hp > 0)
 	{
 		shield_hp -= damage;
 	}

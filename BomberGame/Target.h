@@ -26,6 +26,6 @@ private:
 
 	float radius;
 	float speed = 0.0f;
-	float hit_points = 100.f;
+	int32_t hit_points = 100;
 };
 

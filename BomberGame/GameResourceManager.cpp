@@ -10,7 +10,7 @@ namespace
 		const GameResourceManager::TypeTexture type;
 	};
 
-	constexpr TexturePath TexturePaths[] =
+	constexpr TexturePath TEXTURE_PATH_ARRAY[] =
 	{
 		{ "./data/GamePage/background.png", GameResourceManager::TypeTexture::BACKGROUND},
 		{ "./data/GamePage/Aim.png", GameResourceManager::TypeTexture::AIM},
@@ -29,7 +29,7 @@ namespace
 GameResourceManager::GameResourceManager()
 {
 	// texture emplacing
-	for (const auto& texture_path : TexturePaths)
+	for (const auto& texture_path : TEXTURE_PATH_ARRAY)
 	{
 		sf::Texture texture;
 		texture.loadFromFile(texture_path.filename);
