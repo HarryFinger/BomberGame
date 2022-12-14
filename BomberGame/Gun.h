@@ -17,12 +17,13 @@ public:
 	void update(float delta_time);
 
 	void UpdateAimPosition(const sf::Vector2f& pos) { aim_position = pos; };
-	sf::Vector2f getForwardVercor() const { return forward_vector; }
-	sf::Vector2f getPosition() const { return cannon.getPosition(); }
+	const sf::Vector2f& getForwardVercor() const { return forward_vector; }
+	const sf::Vector2f& getPosition() const { return cannon.getPosition(); }
 	void TryToShoot();
 
 	float getShieldRadius() const { return radius; }
-	sf::Vector2f getShieldPosition() const { return shield.getPosition(); }
+
+	const sf::Vector2f& getShieldPosition() const { return shield.getPosition(); }
 	
 	using CreateCannonballFunction = std::function<void()>;
 	void setCreateCannonballFunction(CreateCannonballFunction create_cannonball_func);

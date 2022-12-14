@@ -1,9 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
+
 class Page
 {
 public:
+	virtual ~Page() {}
+
 	enum class TargetType
 	{
 		MENU,
