@@ -14,18 +14,18 @@
 class GamePage final : public Page
 {
 
-  public:
+public:
     GamePage(uint32_t target_number);
 
     void processInput(const sf::Event &event);
     void update(float delta_time);
     void render(sf::RenderWindow &window) override;
 
-  private:
+private:
     void CreateCannonball(sf::Vector2f for_vec, float speed);
     void CreateTarget();
 
-  private:
+private:
     GameResourceManager res_manager;
 
     Gun gun;

@@ -5,7 +5,7 @@
 
 class MenuResourceManager final
 {
-  public:
+public:
     enum class TypeTexture
     {
         BACKGROUND,
@@ -16,10 +16,10 @@ class MenuResourceManager final
         CURSOR,
     };
 
-  public:
+public:
     MenuResourceManager();
     const sf::Texture &getTexture(TypeTexture type) const;
 
-  private:
+private:
     std::unordered_map<TypeTexture, sf::Texture> texture_map_;
 };

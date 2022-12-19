@@ -6,14 +6,14 @@
 
 class Manager final
 {
-  public:
+public:
     Manager(sf::RenderWindow *window);
 
     void processInput(const sf::Event &event);
     void update(float delta_time);
     void render();
 
-  private:
+private:
     std::unique_ptr<Page> current_state;
     sf::RenderWindow *pwindow;
     uint32_t current_difficulty;

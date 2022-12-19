@@ -4,12 +4,12 @@
 
 namespace
 {
-    const auto max_forward_vec_y = -std::cos(tools::getCannonRotationLimit() * tools::DegreesToRadian());
-    constexpr auto min_forward_vec_y = -1.0f;
-    const auto max_forward_vec_x = std::sin(tools::getCannonRotationLimit() * tools::DegreesToRadian());
-    const auto min_forward_vec_x = -std::sin(tools::getCannonRotationLimit() * tools::DegreesToRadian());
+const auto max_forward_vec_y = -std::cos(tools::getCannonRotationLimit() * tools::DegreesToRadian());
+constexpr auto min_forward_vec_y = -1.0f;
+const auto max_forward_vec_x = std::sin(tools::getCannonRotationLimit() * tools::DegreesToRadian());
+const auto min_forward_vec_x = -std::sin(tools::getCannonRotationLimit() * tools::DegreesToRadian());
 
-    const sf::Color RED{192, 105, 105, 255};
+const sf::Color RED{192, 105, 105, 255};
 } // namespace
 
 Gun::Gun(const sf::Texture &cannon_texture, const sf::Texture &stand_texture, const sf::Texture &shield_texture)

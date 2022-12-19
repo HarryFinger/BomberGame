@@ -4,7 +4,7 @@
 
 class VisibleObject : public sf::Drawable
 {
-  public:
+public:
     VisibleObject(const sf::Texture &texture);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
@@ -35,6 +35,7 @@ class VisibleObject : public sf::Drawable
     }
 
     void setRotation(float angle); // param angle in degrees
+
     sf::FloatRect getCollisionBox() const
     {
         return sprite_.getGlobalBounds();
@@ -47,6 +48,6 @@ class VisibleObject : public sf::Drawable
 
     void setPosition(const sf::Vector2f &position);
 
-  protected:
+protected:
     sf::Sprite sprite_;
 };

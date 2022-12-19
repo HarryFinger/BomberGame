@@ -10,7 +10,7 @@
 
 class Gun final : public sf::Drawable
 {
-  public:
+public:
     Gun(const sf::Texture &cannon_texture, const sf::Texture &stand_texture, const sf::Texture &shield_texture);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
@@ -30,6 +30,7 @@ class Gun final : public sf::Drawable
     {
         return cannon.getPosition();
     }
+
     void TryToShoot();
 
     float getShieldRadius() const
@@ -47,10 +48,10 @@ class Gun final : public sf::Drawable
     bool IsDead() const;
     void DealingDamage(int32_t damage);
 
-  private:
+private:
     void IndicateCooldown();
 
-  private:
+private:
     VisibleObject cannon;
     VisibleObject stand;
     VisibleObject shield;

@@ -3,8 +3,8 @@
 
 namespace
 {
-    constexpr float CANNONBALL_SPEED = 350.0f;
-    constexpr int32_t BASE_DAMAGE = 25;
+constexpr float CANNONBALL_SPEED = 350.0f;
+constexpr int32_t BASE_DAMAGE = 25;
 
 } // namespace
 

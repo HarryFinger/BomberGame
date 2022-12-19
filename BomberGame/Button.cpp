@@ -2,7 +2,7 @@
 
 namespace
 {
-    constexpr float SCALE_FACTOR = 1.12f;
+constexpr float SCALE_FACTOR = 1.12f;
 
 } // namespace
 

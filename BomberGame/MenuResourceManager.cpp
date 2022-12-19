@@ -4,19 +4,19 @@
 
 namespace
 {
-    struct TexturePath
-    {
-        const char *filename;
-        const MenuResourceManager::TypeTexture type;
-    };
+struct TexturePath
+{
+    const char *filename;
+    const MenuResourceManager::TypeTexture type;
+};
 
-    constexpr TexturePath TEXTURE_PATH_ARRAY[] = {
-        {"./data/GamePage/background.png", MenuResourceManager::TypeTexture::BACKGROUND},
-        {"./data/MenuPage/Button_easy.png", MenuResourceManager::TypeTexture::BUTTON_EASY},
-        {"./data/MenuPage/Button_normal.png", MenuResourceManager::TypeTexture::BUTTON_NORMAL},
-        {"./data/MenuPage/Button_hard.png", MenuResourceManager::TypeTexture::BUTTON_HARD},
-        {"./data/MenuPage/Button_exit.png", MenuResourceManager::TypeTexture::BUTTON_EXIT},
-        {"./data/MenuPage/Cursor.png", MenuResourceManager::TypeTexture::CURSOR}};
+constexpr TexturePath TEXTURE_PATH_ARRAY[] = {
+    {"./data/GamePage/background.png", MenuResourceManager::TypeTexture::BACKGROUND},
+    {"./data/MenuPage/Button_easy.png", MenuResourceManager::TypeTexture::BUTTON_EASY},
+    {"./data/MenuPage/Button_normal.png", MenuResourceManager::TypeTexture::BUTTON_NORMAL},
+    {"./data/MenuPage/Button_hard.png", MenuResourceManager::TypeTexture::BUTTON_HARD},
+    {"./data/MenuPage/Button_exit.png", MenuResourceManager::TypeTexture::BUTTON_EXIT},
+    {"./data/MenuPage/Cursor.png", MenuResourceManager::TypeTexture::CURSOR}};
 
 } // namespace
 

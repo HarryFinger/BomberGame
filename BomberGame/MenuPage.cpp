@@ -7,10 +7,10 @@
 
 namespace
 {
-    // number of target that will spawn in game
-    constexpr uint32_t EASY_DIFFICULTY = 5;
-    constexpr uint32_t NORMAL_DIFFICULTY = 7;
-    constexpr uint32_t HARD_DIFFICULTY = 9;
+// number of target that will spawn in game
+constexpr uint32_t EASY_DIFFICULTY = 5;
+constexpr uint32_t NORMAL_DIFFICULTY = 7;
+constexpr uint32_t HARD_DIFFICULTY = 9;
 
 } // namespace
 

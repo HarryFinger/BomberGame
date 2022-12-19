@@ -4,7 +4,7 @@
 
 class Target : public VisibleObject
 {
-  public:
+public:
     enum class Type
     {
         GREEN,
@@ -12,7 +12,7 @@ class Target : public VisibleObject
         RED
     };
 
-  public:
+public:
     Target(const sf::Texture &texture, Type type, const sf::Vector2f &for_vec, const sf::Vector2f &position);
     void update(float delta_time);
 
@@ -29,7 +29,7 @@ class Target : public VisibleObject
     bool IsDead();
     void DealingDamage();
 
-  private:
+private:
     const Type type_ = Type::GREEN;
     sf::Vector2f forward_vector;
 

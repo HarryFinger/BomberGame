@@ -5,7 +5,7 @@
 
 class Page
 {
-  public:
+public:
     virtual ~Page()
     {
     }
@@ -24,6 +24,6 @@ class Page
     virtual void update(float delta_time) = 0;
     virtual void render(sf::RenderWindow &window) = 0;
 
-  protected:
+protected:
     TargetType target_type = TargetType::IDLE;
 };

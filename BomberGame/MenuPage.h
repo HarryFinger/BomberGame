@@ -10,7 +10,7 @@
 
 class MenuPage final : public Page
 {
-  public:
+public:
     MenuPage();
     void processInput(const sf::Event &event) override;
     void update(float delta_time) override;
@@ -21,7 +21,7 @@ class MenuPage final : public Page
         return game_difficulty;
     }
 
-  private:
+private:
     MenuResourceManager res_manager;
 
     std::list<VisibleObject> object_list;
@@ -30,6 +30,6 @@ class MenuPage final : public Page
     uint32_t game_difficulty;
     bool is_left_button_clicked = false;
 
-  private:
+private:
     Button *getButtonOnHover();
 };

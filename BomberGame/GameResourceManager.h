@@ -5,10 +5,10 @@
 
 class GameResourceManager final
 {
-  public:
+public:
     GameResourceManager();
 
-  public:
+public:
     enum class TypeTexture
     {
         BACKGROUND,
@@ -30,7 +30,7 @@ class GameResourceManager final
     const sf::Texture &getTexture(TypeTexture type) const;
     const sf::Font &getFont(TypeFont type) const;
 
-  private:
+private:
     std::unordered_map<TypeTexture, sf::Texture> texture_map_;
     std::unordered_map<TypeFont, sf::Font> font_map_;
 };

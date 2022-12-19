@@ -4,7 +4,7 @@
 
 class Button final : public VisibleObject
 {
-  public:
+public:
     enum class Type
     {
         START_EASY,
@@ -21,15 +21,16 @@ class Button final : public VisibleObject
     {
         return type_;
     }
+
     void setHover(bool hover)
     {
         on_hover = hover;
     };
 
-  private:
+private:
     void setScale(float scale);
 
-  private:
+private:
     const Type type_;
     const sf::Vector2f original_scale;
 
