@@ -2,7 +2,7 @@
 
 namespace
 {
-    constexpr auto WINDOW_WIDTH_SIZE = 1024.0f;
+constexpr auto WINDOW_WIDTH_SIZE = 1024.0f;
     constexpr auto WINDOW_HEIGHT_SIZE = 768.0f;
     constexpr auto FPS = 1.0f / 30.0f;
     constexpr auto PI = 3.1415926f;
@@ -46,23 +46,23 @@ namespace tools
     }
 
     // collision part
-    float DotProduct(const sf::Vector2f& a, const sf::Vector2f& b)
+    float DotProduct(const sf::Vector2f &a, const sf::Vector2f &b)
     {
         return a.x * b.x + a.y * b.y;
     }
 
-    float DistanceBetweenObjects(const sf::Vector2f& a, const sf::Vector2f& b)
+    float DistanceBetweenObjects(const sf::Vector2f &a, const sf::Vector2f &b)
     {
         return std::sqrt(std::pow(a.x - b.x, 2.0f) + std::pow(a.y - b.y, 2.0f));
     }
 
-    sf::Vector2f NormalizeVector(const sf::Vector2f& vec)
+    sf::Vector2f NormalizeVector(const sf::Vector2f &vec)
     {
         const auto ratio = 1.0f / std::sqrt(vec.x * vec.x + vec.y * vec.y);
         return vec * ratio;
     }
 
-    sf::Vector2f CalcNormalizeReflectionVector(const sf::Vector2f& inc_vec, const sf::Vector2f& normal_vec)
+    sf::Vector2f CalcNormalizeReflectionVector(const sf::Vector2f &inc_vec, const sf::Vector2f &normal_vec)
     {
         const auto dot_prod = DotProduct(inc_vec, normal_vec);
         const auto p_vec = dot_prod * normal_vec;

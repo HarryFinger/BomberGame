@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "Manager.h"
 #include "Tools.h"
@@ -13,7 +13,8 @@ int main()
 int WinMain()
 #endif
 {
-    sf::RenderWindow window(sf::VideoMode((uint32_t)tools::getWindowWidth(), (uint32_t)tools::getWindowHeight()), "BoomberGame", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode((uint32_t)tools::getWindowWidth(), (uint32_t)tools::getWindowHeight()),
+                            "BoomberGame", sf::Style::Titlebar | sf::Style::Close);
     window.setMouseCursorVisible(0);
     srand((unsigned)time(NULL));
 
@@ -25,7 +26,7 @@ int WinMain()
 
     while (window.isOpen())
     {
-        //loop time calculation
+        // loop time calculation
         float current_time = main_clock.getElapsedTime().asSeconds();
         float loop_time = current_time - prev_time;
         time_accumulator += loop_time;
@@ -34,7 +35,7 @@ int WinMain()
 
         while (time_accumulator >= tools::getFPS())
         {
-            //event state
+            // event state
             sf::Event event;
             while (window.pollEvent(event))
             {
@@ -44,10 +45,10 @@ int WinMain()
                 manager.processInput(event);
             }
 
-            //update state
+            // update state
             manager.update(tools::getFPS());
 
-            //render state
+            // render state
             window.clear();
             manager.render();
 

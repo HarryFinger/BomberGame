@@ -5,48 +5,46 @@
 #include "GameResourceManager.h"
 #include "Gun.h"
 #include "Page.h"
-#include "VisibleObject.h"
 #include "Target.h"
 #include "Timer.h"
+#include "VisibleObject.h"
 
 #include <SFML/Graphics.hpp>
-
 
 class GamePage final : public Page
 {
 
-public:
-	GamePage(uint32_t target_number);
+  public:
+    GamePage(uint32_t target_number);
 
-	void processInput(const sf::Event& event);
-	void update(float delta_time);
-	void render(sf::RenderWindow& window) override;
+    void processInput(const sf::Event &event);
+    void update(float delta_time);
+    void render(sf::RenderWindow &window) override;
 
-private:
-	void CreateCannonball(sf::Vector2f for_vec, float speed);
-	void CreateTarget();
-	
-private:
-	GameResourceManager res_manager;
+  private:
+    void CreateCannonball(sf::Vector2f for_vec, float speed);
+    void CreateTarget();
 
-	Gun gun;
-	Timer timer;
+  private:
+    GameResourceManager res_manager;
 
-	Cursor cursor;
-	VisibleObject background;
-	VisibleObject win;
-	VisibleObject lose;
+    Gun gun;
+    Timer timer;
 
-	std::list<Cannonball> cannonball_list;
-	std::list<Target> target_list;
+    Cursor cursor;
+    VisibleObject background;
+    VisibleObject win;
+    VisibleObject lose;
 
-	enum class State
-	{
-		WIN,
-		LOSE,
-		IDLE,
-	};
+    std::list<Cannonball> cannonball_list;
+    std::list<Target> target_list;
 
-	State state = State::IDLE;
+    enum class State
+    {
+        WIN,
+        LOSE,
+        IDLE,
+    };
+
+    State state = State::IDLE;
 };
-
